@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>User: {{ user }}</h1>
+<h1>User pk is: {{ user.pk }}</h1>
+
+
+        {% for snip in snippets %}
+            {{ snip.code }}
+        {% endfor %}
+
+{% endblock %}
