@@ -11,4 +11,4 @@ class Snippet(models.Model):
     language = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.author} | {self.language}"
+        return f"{self.author} | {self.title} | {self.code} | {self.language}"

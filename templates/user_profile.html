@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>User: {{ user }}</h1>
-<h1>User pk is: {{ user.pk }}</h1>
-
-{% for snippet in user.snippets.all %}
-    {{ snippet.code }}
-{% endfor %}
+<header class="header">
+    <a href="/user/feed">Home Page</a>
+    <a href="{% url 'user_profile' pk=user.pk %}">My Profile Page</a>
+    <a href="/accounts/logout">Logout</a>
+</header>
+<br>
+<h1>Currently logged in as User: {{ user }}</h1>
+<br>
+<div class="snippets">
+    <ul>
+        {% for snippet in user.snippets.all %}
+        <li>{{ snippet.code }}
+        </li>
+        {% endfor %}
+    </ul>
+        
 {% endblock %}
