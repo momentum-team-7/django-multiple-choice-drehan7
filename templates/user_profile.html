@@ -11,7 +11,7 @@
 <div class="snippets">
     <ul>
         {% for snippet in user.snippets.all %}
-        <li>{{ snippet.code }}
+        <li>{{ snippet.title}} | {{ snippet.code }} | {{ snippet.language }}
         </li>
         {% endfor %}
     </ul>
