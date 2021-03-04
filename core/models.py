@@ -6,7 +6,7 @@ class User(AbstractUser):
 
 class Snippet(models.Model):
     title = models.CharField(max_length=50)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets')
     code = models.TextField()
     language = models.CharField(max_length=20)
 
