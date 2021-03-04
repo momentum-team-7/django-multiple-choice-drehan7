@@ -139,3 +139,4 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+ACCOUNT_ACTIVATION_DAYS = 7
