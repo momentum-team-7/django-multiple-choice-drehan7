@@ -8,7 +8,12 @@ def index(request):
     users = User.objects.all()
     return render(request, 'index.html', {'users': users})
 
-# @login_required
+@login_required
+def feed(request):
+    users = User.objects.all()
+    return render(request, 'public_feed.html', {'users': users})
+
+@login_required
 def user_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, 'user_profile.html', {'user': user})

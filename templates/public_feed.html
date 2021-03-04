@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header class="header">
+    <a href="/user/feed">Home Page</a>
+    <a href="{% url 'user_profile' pk=user.pk %}">Profile Page</a>
+    <a href="/accounts/logout">Logout</a>
+
+</header>
+<h1>Currently logged in as User: {{ user }}</h1>
+
+<!-- {% for snippet in snippets.all %} -->
+    {{ snippets.all }}
+{% endfor %}
+{% endblock %}
