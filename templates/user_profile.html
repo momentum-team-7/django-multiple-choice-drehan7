@@ -6,18 +6,19 @@
     <a href="/accounts/logout">Logout</a>
 </header>
 <br>
-<h1>Currently logged in as User: {{ request.user }}</h1>
+<h2>Currently logged in as User: {{ request.user }} PK: {{ request.user.pk }}</h1>
 <br>
 <div class="snippets">
-    <h3>{{ user }}'s Snippets</h3>
+    <h1>{{ user }}'s Snippets</h3>
     <ul>
         {% for snippet in user.snippets.all %}
-        <li>{{ snippet.title}} | {{ snippet.code }} | {{ snippet.language }}
-        </li>
+        <li>{{snippet.author.pk}}{{ snippet.title }}</a>| {{ snippet.code }} | {{ snippet.language }} | {{snippet.pk}}
+        <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a></li>
         {% endfor %}
     </ul>
         
 </div>
-
+{% if user.pk == request.user.pk %}
 <a href="{% url 'add_snippet' pk=request.user.pk%}">ADD SNIPPET</a>
+{% endif %}
 {% endblock %}

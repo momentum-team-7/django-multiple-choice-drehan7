@@ -35,3 +35,18 @@ def add_snippet(request, pk):
     else:
         form = SnippetForm()
     return render(request, 'add_snippet.html', {'form':form})
+
+@login_required
+def edit_snippet(request, pk, id):
+    snippet = get_object_or_404(Snippet, pk=id)
+    if request.user.pk != snippet.author.pk:
+        return render(request, 'error.html')
+    if request.method == 'POST':
+        form = SnippetForm(request.POST, instance=snippet)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f'/user/{pk}/profile/')
+    else:
+        form = SnippetForm(instance=snippet)
+    
+    return render(request, 'edit_snippet.html', {'form':form, 'snippet':snippet})
