@@ -50,3 +50,12 @@ def edit_snippet(request, pk, id):
         form = SnippetForm(instance=snippet)
     
     return render(request, 'edit_snippet.html', {'form':form, 'snippet':snippet})
+
+@login_required
+def delete_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    if request.user.pk != snippet.author.pk:
+        return render(request, 'error.html')
+    snippet.delete()
+    return HttpResponseRedirect(f'/user/{snippet.author.pk}/profile/')
+

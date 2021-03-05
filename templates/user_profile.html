@@ -13,7 +13,7 @@
     <ul>
         {% for snippet in user.snippets.all %}
         <li>{{snippet.author.pk}}{{ snippet.title }}</a>| {{ snippet.code }} | {{ snippet.language }} | {{snippet.pk}}
-        <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a></li>
+        <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a><a href="{% url 'delete_snippet' pk=snippet.pk%}">Delete</a></li>
         {% endfor %}
     </ul>
         
