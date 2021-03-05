@@ -17,4 +17,7 @@
         {% endfor %}
     </ul>
         
+</div>
+
+<a href="{% url 'add_snippet' pk=request.user.pk%}">ADD SNIPPET</a>
 {% endblock %}
