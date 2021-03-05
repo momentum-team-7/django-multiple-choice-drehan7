@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <header class="header">
     <a href="/user/feed">Home Page</a>
     <a href="{% url 'user_profile' pk=user.pk %}">My Profile Page</a>
     <a href="/accounts/logout">Logout</a>
 </header>
-<br>
-<h1>Currently logged in as User: {{ user }}</h1>
-<br>
-<div class="snippets">
+<h1>Welcome to Code Snippet Public Feed Page</h1>
+<h2>Currently logged in as User: {{ user }}</h2>
+
+<div class="snippets">User Snippets
     <ul>
+        <!-- {% for user in users %} -->
         {% for snippet in user.snippets.all %}
-        <li>{{ snippet.title}} | {{ snippet.code }} | {{ snippet.language }}
+        <li>{{ snippet }}
         </li>
         {% endfor %}
+        <!-- {% endfor %} -->
     </ul>
-        
 {% endblock %}
