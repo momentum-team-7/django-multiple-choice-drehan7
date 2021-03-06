@@ -1,0 +1,5 @@
+.snippets li {
+  border: 1px solid green;
+  margin: 3%;
+  font-size: 20px;
+}
