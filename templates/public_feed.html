@@ -2,20 +2,30 @@
 {% block content %}
 
 <header class="header">
-    <a href="/user/feed">Home Page</a>
-    <a href="{% url 'user_profile' pk=user.pk %}">My Profile Page</a>
+    <a href="/user/feed">Home Page | </a>
+    <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
     <a href="/accounts/logout">Logout</a>
 </header>
 <h1>Welcome to Code Snippet Public Feed Page</h1>
-<h2>Currently logged in as User: {{ user }}</h2>
 
-<div class="snippets">User Snippets
+
+<div class="public-snippets-container">Public Snippets
     <ul>
-        <!-- {% for user in users %} -->
+        {% for user in users %}
         {% for snippet in user.snippets.all %}
-        <li><a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a> | {{snippet.title}} | <pre><code>{{snippet.code}}</code></pre> | Language: {{snippet.language}}
-        </li>
+        <div class="snippet-format">
+            <li><div class="snippet-title">
+                <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+                Title: {{snippet.title}}
+            </div>
+            <div class="snippet-code-container">
+            <pre><code>{{snippet.code}}</code></pre>
+            </div>
+            Language: {{snippet.language}}</li>
+            
+        </div>
+            {% endfor %}
         {% endfor %}
-        <!-- {% endfor %} -->
     </ul>
+</div>  
 {% endblock %}
