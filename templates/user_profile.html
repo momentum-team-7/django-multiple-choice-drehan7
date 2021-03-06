@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <header class="header">
-    <a href="/user/feed">Home Page</a>
-    <a href="{% url 'user_profile' pk=request.user.pk %}">My Profile Page</a>
+    <a href="/user/feed">Home Page | </a>
+    <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
     <a href="/accounts/logout">Logout</a>
 </header>
 <br>
-<h2>Currently logged in as User: {{ request.user }} PK: {{ request.user.pk }}</h1>
 <br>
 <div class="snippets-container">
-    <h1>{{ user }}'s Snippets</h3>
+
+    <h1>{{ user }}'s Snippets</h1>
         {% for snippet in user.snippets.all %}
-        <div class="snippet">
-            {{snippet.author.pk}}{{ snippet.title }}</a>| <pre><code>{{snippet.code}}</code></pre> | {{ snippet.language }} | {{snippet.pk}}
-            <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a><a href="{% url 'delete_snippet' pk=snippet.pk%}">Delete</a></li>
+        <div class="snippet-format">
+            <li><div class="snippet-title">
+                <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+                Title: {{snippet.title}}
+            </div>
+            <div class="snippet-code-container">
+            <pre><code>{{snippet.code}}</code></pre> 
+            </div> 
+            <div class="bottom-snippet-container"> Language: {{ snippet.language }}
+            <div class= "edit-delete-buttons">
+            <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit </a><a href="{% url 'delete_snippet' pk=snippet.pk%}"> Delete</a>
+            </div>
+            </div>
+            </li>
         </div>
         {% endfor %}
         

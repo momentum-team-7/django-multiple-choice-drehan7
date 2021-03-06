@@ -1,7 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');
+
+* {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+
+a {
+  color: #f9c74f;
+  font-size: 20px;
+  text-decoration: none;
+}
+.login-title {
+  font-size: 48px;
+}
+
+.login-submit-button {
+  font-size: 20px;
+  background-color: inherit;
+  border-style: dashed;
+  border-radius: 21%;
+  margin-bottom: 2%;
+  padding: 1rem;
+}
+
+.snippet-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-snippet-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.snippet-format {
+  /* border: 2px solid #f3722c; */
+  margin: 1rem;
+  background-color: #495057;
+  list-style-type: none;
+  padding:.5rem;
+
+  
+
+  
+}
+
+.snippet-code-container {
+  background-color: #293241;
+  opacity: .6;
+  color:white;
+  margin:1rem;
+  padding: .4rem;
+
+}
+
 .snippets li {
   border: 1px solid green;
   margin: 3%;
   font-size: 20px;
+}
+body {
+  background-color: #555b6e;
 }
 
 .header {
@@ -13,6 +73,19 @@
   text-align: center;
 }
 
+.login-main-container {
+  border: 2px solid green;
+  margin-top: 20%;
+  text-align: center;
+}
+.login-form-labels {
+  font-size: 30px;
+
+}
+.login-form-labels input {
+  height: 30px;
+  font-size: 20px;
+}
 
 .login_button {
   text-decoration: none;
