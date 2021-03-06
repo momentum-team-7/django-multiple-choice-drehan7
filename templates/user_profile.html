@@ -8,14 +8,14 @@
 <br>
 <h2>Currently logged in as User: {{ request.user }} PK: {{ request.user.pk }}</h1>
 <br>
-<div class="snippets">
+<div class="snippets-container">
     <h1>{{ user }}'s Snippets</h3>
-    <ul>
         {% for snippet in user.snippets.all %}
-        <li>{{snippet.author.pk}}{{ snippet.title }}</a>| {{ snippet.code }} | {{ snippet.language }} | {{snippet.pk}}
-        <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a><a href="{% url 'delete_snippet' pk=snippet.pk%}">Delete</a></li>
+        <div class="snippet">
+            {{snippet.author.pk}}{{ snippet.title }}</a>| <pre><code>{{snippet.code}}</code></pre> | {{ snippet.language }} | {{snippet.pk}}
+            <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}">Edit</a><a href="{% url 'delete_snippet' pk=snippet.pk%}">Delete</a></li>
+        </div>
         {% endfor %}
-    </ul>
         
 </div>
 {% if user.pk == request.user.pk %}
