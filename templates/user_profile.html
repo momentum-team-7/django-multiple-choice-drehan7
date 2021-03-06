@@ -2,19 +2,30 @@
 {% block content %}
 <header class="header">
     <a href="/user/feed">Home Page | </a>
-    <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
+    <a href="{% url 'user_profile' pk=request.user.pk %}">{{request.user}}'s Profile | </a>
     <a href="/accounts/logout">Logout</a>
 </header>
 <br>
 <br>
 <div class="snippets-container">
-
+    {% if request.user.pk is user.pk %}
+    <div class="snippet-search-container">
+        <input class="snippet-search" type="search" placeholder="Search Snippets">
+        
+    </div>
+    {% endif %}
+    
     <h1>{{ user }}'s Snippets</h1>
+    {% if user.pk == request.user.pk %}
+    <a href="{% url 'add_snippet' pk=request.user.pk%}">ADD SNIPPET</a>
+    {% endif %}
         {% for snippet in user.snippets.all %}
         <div class="snippet-format">
-            <li><div class="snippet-title">
-                <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+            <li><div class="snippet-title-container">
                 Title: {{snippet.title}}
+            </div>
+            <div class="snippet-title">
+                <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
             </div>
             <div class="snippet-code-container">
             <pre><code>{{snippet.code}}</code></pre> 
@@ -29,7 +40,4 @@
         {% endfor %}
         
 </div>
-{% if user.pk == request.user.pk %}
-<a href="{% url 'add_snippet' pk=request.user.pk%}">ADD SNIPPET</a>
-{% endif %}
 {% endblock %}
