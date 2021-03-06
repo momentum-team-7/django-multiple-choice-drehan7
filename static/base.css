@@ -3,3 +3,41 @@
   margin: 3%;
   font-size: 20px;
 }
+
+.header {
+  text-align: center;
+}
+
+.login_button_container {
+  border: 2px solid red;
+  text-align: center;
+}
+
+
+.login_button {
+  text-decoration: none;
+  width: 2rem;
+  height: 1rem;
+  background: #f1e6e6;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px;
+  color: rgb(158, 73, 73);
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 25px;
+}
+
+.register_button {
+  text-decoration: none;
+  width: 2rem;
+  height: 1rem;
+  background: #f1e6e6;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px;
+  color: rgb(158, 73, 73);
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 25px;
+}
