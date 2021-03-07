@@ -10,7 +10,10 @@
 <div class="snippets-container">
     {% if request.user.pk is user.pk %}
     <div class="snippet-search-container">
-        <input class="snippet-search" type="search" placeholder="Search Snippets">
+        <form action="{% url 'search_results' pk=request.user.pk %}" method="get">
+            <input name="query" type="text" placeholder="Search Snippets...">
+            <button type="submit">Search</button>
+        </form>
         
     </div>
     {% endif %}

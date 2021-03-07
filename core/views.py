@@ -59,3 +59,8 @@ def delete_snippet(request, pk):
     snippet.delete()
     return HttpResponseRedirect(f'/user/{snippet.author.pk}/profile/')
 
+@login_required
+def search_results(request, pk):
+    search_input = request.GET['query']
+    results = Snippet.objects.filter(code__icontains=search_input)
+    return render(request, 'search_results.html', {'results':results, 'search_input': search_input})
