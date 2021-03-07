@@ -16,10 +16,13 @@ a {
 .login-submit-button {
   font-size: 20px;
   background-color: inherit;
-  border-style: dashed;
-  border-radius: 21%;
+  border-style: none;
   margin-bottom: 2%;
   padding: 1rem;
+}
+.login-submit-button:hover {
+  opacity: 0.7;
+  color: #f9c74f;
 }
 
 .snippet-title-container {
@@ -77,9 +80,10 @@ body {
   text-align: center;
 }
 .login-form-labels {
-  font-size: 30px;
+  font-size: 25px;
 }
 .login-form-labels input {
+  margin-left: 3%;
   height: 30px;
   font-size: 20px;
 }
