@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import User, Snippet
-from .forms import SnippetForm
+from .models import User, Snippet, Profile
+from .forms import SnippetForm, ProfileForm
+import os
 
 # Create your views here.
 
@@ -18,7 +19,8 @@ def feed(request):
 @login_required
 def user_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
-    return render(request, 'user_profile.html', {'user': user})
+    profile = get_object_or_404(Profile, user=user)
+    return render(request, 'user_profile.html', {'user': user, 'profile':profile})
 
 @login_required
 def add_snippet(request, pk):
@@ -64,3 +66,27 @@ def search_results(request, pk):
     search_input = request.GET['query']
     results = Snippet.objects.filter(code__icontains=search_input)
     return render(request, 'search_results.html', {'results':results, 'search_input': search_input})
+
+@login_required
+def update_pic(request, pk):
+    
+    user = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES, instance=user)
+        if form.is_valid():
+            user.picture = form.cleaned_data['picture']
+            user.save()
+            # if request.FILES.get('picture', None) != None:
+            #     try:
+            #         os.remove(user.picture.url)
+            #     except Exception as e:
+            #         print('Exception in removing old picture',e)
+            #     request.user.picture = request.FILES['picture']
+            #     request.user.save()
+            print("FORM VALID !!!")
+            return HttpResponseRedirect(f'/user/{pk}/profile/')
+        
+    else:
+        form = ProfileForm(instance=request.user)
+    return render(request, 'update_pic.html', {"form": form})
+
