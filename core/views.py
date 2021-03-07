@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import User, Snippet
-from .forms import SnippetForm
+from .models import User, Snippet, Profile
+from .forms import SnippetForm, ProfileForm
 
 # Create your views here.
 
@@ -64,3 +64,18 @@ def search_results(request, pk):
     search_input = request.GET['query']
     results = Snippet.objects.filter(code__icontains=search_input)
     return render(request, 'search_results.html', {'results':results, 'search_input': search_input})
+
+@login_required
+def update_pic(request, pk):
+    
+    user = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.picture = request.FILES['picture']
+            form.save()
+            return HttpResponseRedirect(f'/user/{pk}/profile/')
+    else:
+        form = ProfileForm(instance=user)
+   
+    return render(request, 'update_pic.html', {"form": form})
