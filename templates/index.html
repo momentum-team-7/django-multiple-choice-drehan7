@@ -3,13 +3,18 @@
 {% block content %}
 
     <header class="header">
-        <h1>CODE SNIPPET</h1>
+        <h1>CODE SNIPPET LIBRARY</h1>
     </header>
     <br>
         <div class="login_button_container">
+        {% if request.user.is_authenticated %}
+        <div class="already-logged-msg login_button">You are already Logged In dum dum</div>
+        <a href="/user/feed/" class="login_button">Go to Feed</a>
+        {% else %}
         <a href="/accounts/login"class="login_button">Login</a>
         <br>
         <a href="/accounts/register"class="register_button">Create a New User Account</a>
+        {% endif %}
         </div>
         <a></a>
         <a></a>
