@@ -7,6 +7,9 @@
 </header>
 <br>
 <br>
+<div class="profile-pic">
+    <img src="{{ user.profile.picture.url }}", width="250">
+</div>
 <div class="snippets-container">
     {% if request.user.pk is user.pk %}
     <div class="snippet-search-container">
