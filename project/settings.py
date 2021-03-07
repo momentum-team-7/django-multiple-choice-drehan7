@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from pathlib import Path
-
 import environ
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 env = environ.Env(
     # set casting, default value
@@ -128,6 +130,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Custom user model
 
 AUTH_USER_MODEL = 'core.User'
@@ -139,6 +144,8 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = 'feed'
