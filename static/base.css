@@ -131,6 +131,11 @@ a {
 .register_button:hover {
   color: #000000;
 }
+.already-logged-msg {
+  font-size: 20px;
+  width: fit-content;
+  margin-bottom: 5%;
+}
 
 /*Search Bar Styles*/
 
