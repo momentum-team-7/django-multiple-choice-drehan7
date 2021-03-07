@@ -20,6 +20,12 @@ a {
 
 /*Snippet Styles*/
 
+.profile-pic {
+  /* max-width: 10rem; */
+  height: auto;
+
+}
+
 .snippet-title-container {
   background-color: #6c757d;
   opacity: 0.8;
