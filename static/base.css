@@ -67,11 +67,7 @@ body {
 }
 
 .header {
-  text-align: center;
-}
-
-.login_button_container {
-  border: 2px solid red;
+  font-size: 26px;
   text-align: center;
 }
 
@@ -88,32 +84,44 @@ body {
   font-size: 20px;
 }
 
+.login_button_container {
+  margin-top: 12%;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .login_button {
   text-decoration: none;
-  width: 2rem;
-  height: 1rem;
-  background: #f1e6e6;
+  width: 10rem;
+  height: 2rem;
   padding: 2px;
   text-align: center;
   border-radius: 5px;
-  color: rgb(158, 73, 73);
+  color: #8d99ae;
   font-family: monospace;
   font-weight: bold;
   line-height: 25px;
+  opacity: 0.7;
 }
 
 .register_button {
   text-decoration: none;
-  width: 2rem;
-  height: 1rem;
-  background: #f1e6e6;
+  width: 15rem;
+  height: 3rem;
   padding: 2px;
+  color: #8d99ae;
   text-align: center;
   border-radius: 5px;
-  color: rgb(158, 73, 73);
   font-family: monospace;
   font-weight: bold;
   line-height: 25px;
+  opacity: 0.7;
+}
+.login_button:hover,
+.register_button:hover {
+  color: #000000;
 }
 
 .snippet-search-container {
