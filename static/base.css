@@ -4,26 +4,21 @@
   font-family: "Titillium Web", sans-serif;
 }
 
+body {
+  background-color: #555b6e;
+}
+
+.header {
+  font-size: 26px;
+  text-align: center;
+}
 a {
   color: #f9c74f;
   font-size: 20px;
   text-decoration: none;
 }
-.login-title {
-  font-size: 48px;
-}
 
-.login-submit-button {
-  font-size: 20px;
-  background-color: inherit;
-  border-style: none;
-  margin-bottom: 2%;
-  padding: 1rem;
-}
-.login-submit-button:hover {
-  opacity: 0.7;
-  color: #f9c74f;
-}
+/*Snippet Styles*/
 
 .snippet-title-container {
   background-color: #6c757d;
@@ -65,15 +60,8 @@ a {
   margin: 3%;
   font-size: 20px;
 }
-body {
-  background-color: #555b6e;
-}
 
-.header {
-  font-size: 26px;
-  text-align: center;
-}
-
+/*Login Page Styles*/
 .login-main-container {
   /* border: 2px solid green; */
   margin-top: 20%;
@@ -110,6 +98,22 @@ body {
   opacity: 0.7;
 }
 
+.login-title {
+  font-size: 48px;
+}
+
+.login-submit-button {
+  font-size: 20px;
+  background-color: inherit;
+  border-style: none;
+  margin-bottom: 2%;
+  padding: 1rem;
+}
+.login-submit-button:hover {
+  opacity: 0.7;
+  color: #f9c74f;
+}
+
 .register_button {
   text-decoration: none;
   width: 15rem;
@@ -127,6 +131,8 @@ body {
 .register_button:hover {
   color: #000000;
 }
+
+/*Search Bar Styles*/
 
 .snippet-search-container {
   display: flex;
