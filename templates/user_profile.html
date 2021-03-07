@@ -8,13 +8,13 @@
 <br>
 <br>
 <div class="profile-pic">
-   
     <img src="{{ profile.picture.url }}" alt="Profile pic" width="250">
+    {% if request.user.pk is user.pk %}
     <div class="update-picture">
         <a href="{% url 'update_pic' pk=request.user.pk %}">edit picture</a>
             
     </div>
- 
+    {% endif %}
 </div>
 <div class="snippets-container">
     {% if request.user.pk is user.pk %}
