@@ -4,7 +4,7 @@
 <br>
 <br>
 <div class="profile-pic">
-    <img src="{{ profile.picture.url }}" alt="Profile pic" width="250">
+    <img src="{{ profile.picture.url }}" alt="Profile pic" width="200">
     {% if request.user.pk is user.pk %}
     <div class="update-picture">
         <a href="{% url 'update_pic' pk=request.user.pk %}">edit picture</a>
@@ -41,11 +41,16 @@
             <div class="snippet-code-container">
                 <pre><code>{{snippet.code}}</code></pre>
             </div>
-                Language: {{snippet.language}}
+            <pre><code class="plaintext"> Language: {{snippet.language}} </code></pre>
             <div class= "edit-delete-buttons">
                 {% if user.pk == request.user.pk %}
                 <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit | </a> 
                 <a href="{% url 'delete_snippet' pk=snippet.pk%}"> Delete</a>
+                {% endif %}
+            </div>
+            <div class="copy-button">
+                {% if user.pk != request.user.pk %}
+                <a href="{% url 'copy_snippet' snippetPK=snippet.pk %}"> Copy </a> 
                 {% endif %}
             </div>
             </li>

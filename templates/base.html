@@ -14,11 +14,13 @@
     <title>Code Snippet</title>
 </head>
 <body>
+    {% if request.user.pk != none %}
     <header class="header">
         <a href="/user/feed">Home Page | </a>
         <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
         <a href="/accounts/logout">Logout</a>
     </header>
+    {% endif %}
     {% block content %}
     {% endblock content %}
 </body>
