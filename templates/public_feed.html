@@ -15,14 +15,16 @@
         {% for snippet in user.snippets.all %}
         <div class="snippet-format">
             <li><div class="snippet-title">
-                <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+                    <div class="author-info">
+                    <img src="{{ profile.picture.url }}" alt="Profile pic" width="50">
+                    <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+                    </div>
                 Title: {{snippet.title}}
             </div>
             <div class="snippet-code-container">
             <pre><code>{{snippet.code}}</code></pre>
             </div>
             Language: {{snippet.language}}</li>
-            
         </div>
             {% endfor %}
         {% endfor %}
