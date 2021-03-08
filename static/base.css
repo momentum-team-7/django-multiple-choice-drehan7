@@ -60,8 +60,8 @@ a {
 }
 
 .snippet-code-container {
-  background-color: #293241;
-  opacity: 0.6;
+  /* background-color: #293241; */
+  /* opacity: 0.6; */
   color: white;
   margin: 1rem;
   padding: 0.4rem;

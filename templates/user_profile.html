@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<header class="header">
-    <a href="/user/feed">Home Page | </a>
-    <a href="{% url 'user_profile' pk=request.user.pk %}">{{request.user}}'s Profile | </a>
-    <a href="/accounts/logout">Logout</a>
-</header>
+
 <br>
 <br>
 <div class="profile-pic">

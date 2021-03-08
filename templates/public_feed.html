@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<header class="header">
-    <a href="/user/feed">Home Page | </a>
-    <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
-    <a href="/accounts/logout">Logout</a>
-</header>
+
 <h1>Public Feed</h1>
 
 
@@ -18,17 +14,18 @@
                     <div class="author-info">
                         {% for profile in profiles %}
                         {% if profile.user.pk is user.pk %}
-                    <img src="{{ profile.picture.url }}" alt="Profile pic" width="50">
+                        <img src="{{ profile.picture.url }}" alt="Profile pic" width="50">
                         {% endif %}
                         {% endfor %}
-                    <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
+                        <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
                     </div>
                 Title: {{snippet.title}} <span class="copies">COPIES: {{snippet.copies}}</span>
             </div>
             <div class="snippet-code-container">
-                <pre><code>{{snippet.code}}</code></pre>
+                <pre><code class="{{ snippet.language }}">{{snippet.code}}</code></pre>
             </div>
-            Language: {{snippet.language}}</li>
+            <pre><code class="plaintext"> Language: {{snippet.language}} </code></pre>
+            </li>
             <div class= "edit-delete-buttons">
                 {% if user.pk == request.user.pk %}
                 <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit | </a> 
