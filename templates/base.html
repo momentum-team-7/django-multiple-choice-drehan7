@@ -6,11 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href= "{% static 'base.css' %}">
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css"> -->
+    <link rel="stylesheet" href="{% static 'dracula.min.css' %}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"defer></script>
     <script src="{% static 'javascript/scripts.js' %}"defer></script>
 
     <title>Code Snippet</title>
 </head>
 <body>
+    <header class="header">
+        <a href="/user/feed">Home Page | </a>
+        <a href="{% url 'user_profile' pk=user.pk %}">{{request.user}}'s Profile | </a>
+        <a href="/accounts/logout">Logout</a>
+    </header>
     {% block content %}
     {% endblock content %}
 </body>
