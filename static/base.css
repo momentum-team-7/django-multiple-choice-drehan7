@@ -23,7 +23,6 @@ a {
 .profile-pic {
   /* max-width: 10rem; */
   height: auto;
-
 }
 
 .snippet-title-container {
@@ -35,8 +34,15 @@ a {
   color: white;
 }
 
+.copies {
+  font-size: 20px;
+  color: white;
+}
+
 .snippet-title {
   display: flex;
+  font-size: 20px;
+  color: white;
   justify-content: space-between;
 }
 
@@ -70,7 +76,7 @@ a {
 /*Login Page Styles*/
 .login-main-container {
   /* border: 2px solid green; */
-  margin-top: 20%;
+  margin-top: 10%;
   text-align: center;
 }
 .login-form-labels {

@@ -14,7 +14,8 @@ def index(request):
 @login_required
 def feed(request):
     users = User.objects.all()
-    return render(request, 'public_feed.html', {'users': users})
+    profiles = Profile.objects.all() 
+    return render(request, 'public_feed.html', {'users': users, 'profiles': profiles})
 
 @login_required
 def user_profile(request, pk):
@@ -76,13 +77,6 @@ def update_pic(request, pk):
         if form.is_valid():
             user.picture = form.cleaned_data['picture']
             user.save()
-            # if request.FILES.get('picture', None) != None:
-            #     try:
-            #         os.remove(user.picture.url)
-            #     except Exception as e:
-            #         print('Exception in removing old picture',e)
-            #     request.user.picture = request.FILES['picture']
-            #     request.user.save()
             print("FORM VALID !!!")
             return HttpResponseRedirect(f'/user/{pk}/profile/')
         
@@ -90,3 +84,20 @@ def update_pic(request, pk):
         form = ProfileForm(instance=request.user)
     return render(request, 'update_pic.html', {"form": form})
 
+@login_required
+def copy_snippet(request,snippetPK):
+    snippet = Snippet.objects.get(pk=snippetPK)
+
+    new_snippet = Snippet.objects.create(
+        title=snippet.title, 
+        author=request.user, 
+        code=snippet.code, 
+        language=snippet.language, 
+        copies=0
+        )
+
+    snippet.copies+=1
+    new_snippet.save()
+    snippet.save()
+            
+    return HttpResponseRedirect(f'/user/{request.user.pk}/profile/')
