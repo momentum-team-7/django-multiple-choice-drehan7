@@ -85,25 +85,19 @@ def update_pic(request, pk):
     return render(request, 'update_pic.html', {"form": form})
 
 @login_required
-def copy_snippet(request, authorPK, snippetPK):
-    author = User.objects.get(pk=authorPK)
+def copy_snippet(request,snippetPK):
     snippet = Snippet.objects.get(pk=snippetPK)
-    new_instance = {
-        'title':snippet.title,
-        'author':request.user,
-        'code':snippet.code,
-        'language':snippet.language,
-        'copies':0
-    }
-    if request.method == 'POST':
-        form = SnippetForm(request.POST, initial=new_instance)
-        if form.is_valid():
-            snippet.copies += 1
-            snippet.save()
-            form.save()
-            return HttpResponseRedirect(f'/user/{authorPK}/profile')
 
-    else:
-        form = SnippetForm(initial=new_instance)
+    new_snippet = Snippet.objects.create(
+        title=snippet.title, 
+        author=request.user, 
+        code=snippet.code, 
+        language=snippet.language, 
+        copies=0
+        )
+
+    snippet.copies+=1
+    new_snippet.save()
+    snippet.save()
             
-    return render(request, 'copy_snippet.html', {'form':form, 'user':author, 'snippet':snippet})
+    return HttpResponseRedirect(f'/user/{request.user.pk}/profile/')

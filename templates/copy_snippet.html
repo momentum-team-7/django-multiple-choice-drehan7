@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>COPY STFUFF</h1>
-<form action="{% url 'copy_snippet' authorPK=user.pk snippetPK=snippet.pk %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Add to Library">
-</form>
-{% endblock %}

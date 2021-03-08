@@ -37,7 +37,7 @@
             </div>
             <div class="copy-button">
                 {% if user.pk != request.user.pk %}
-                <a href="{% url 'copy_snippet' authorPK=user.pk snippetPK=snippet.pk %}"> Copy </a> 
+                <a href="{% url 'copy_snippet' snippetPK=snippet.pk %}"> Copy </a> 
                 {% endif %}
             </div>
         </div>
