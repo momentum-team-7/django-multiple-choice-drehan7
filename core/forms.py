@@ -6,9 +6,11 @@ class SnippetForm(forms.ModelForm):
         super(SnippetForm, self).__init__(*args, **kwargs)
         self.fields['author'].disabled = True
         self.fields['author'].widget = forms.HiddenInput()
+        self.fields['copies'].disabled = True
+        self.fields['copies'].widget = forms.HiddenInput()
     class Meta:
         model = Snippet
-        fields = ['title','author','code', 'language']
+        fields = ['title','author','code', 'language', 'copies']
             
 class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

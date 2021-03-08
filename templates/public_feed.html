@@ -23,7 +23,7 @@
                         {% endfor %}
                     <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
                     </div>
-                Title: {{snippet.title}}
+                Title: {{snippet.title}} <span class="copies">COPIES: {{snippet.copies}}</span>
             </div>
             <div class="snippet-code-container">
                 <pre><code>{{snippet.code}}</code></pre>
@@ -37,7 +37,7 @@
             </div>
             <div class="copy-button">
                 {% if user.pk != request.user.pk %}
-                <a href=""> Copy </a> 
+                <a href="{% url 'copy_snippet' authorPK=user.pk snippetPK=snippet.pk %}"> Copy </a> 
                 {% endif %}
             </div>
         </div>

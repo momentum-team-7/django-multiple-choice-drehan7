@@ -77,13 +77,6 @@ def update_pic(request, pk):
         if form.is_valid():
             user.picture = form.cleaned_data['picture']
             user.save()
-            # if request.FILES.get('picture', None) != None:
-            #     try:
-            #         os.remove(user.picture.url)
-            #     except Exception as e:
-            #         print('Exception in removing old picture',e)
-            #     request.user.picture = request.FILES['picture']
-            #     request.user.save()
             print("FORM VALID !!!")
             return HttpResponseRedirect(f'/user/{pk}/profile/')
         
@@ -91,3 +84,26 @@ def update_pic(request, pk):
         form = ProfileForm(instance=request.user)
     return render(request, 'update_pic.html', {"form": form})
 
+@login_required
+def copy_snippet(request, authorPK, snippetPK):
+    author = User.objects.get(pk=authorPK)
+    snippet = Snippet.objects.get(pk=snippetPK)
+    new_instance = {
+        'title':snippet.title,
+        'author':request.user,
+        'code':snippet.code,
+        'language':snippet.language,
+        'copies':0
+    }
+    if request.method == 'POST':
+        form = SnippetForm(request.POST, initial=new_instance)
+        if form.is_valid():
+            snippet.copies += 1
+            snippet.save()
+            form.save()
+            return HttpResponseRedirect(f'/user/{authorPK}/profile')
+
+    else:
+        form = SnippetForm(initial=new_instance)
+            
+    return render(request, 'copy_snippet.html', {'form':form, 'user':author, 'snippet':snippet})

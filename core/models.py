@@ -9,9 +9,10 @@ class Snippet(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets')
     code = models.TextField()
     language = models.CharField(max_length=20)
+    copies = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.author} | {self.title} | {self.code} | {self.language}"
+        return f"{self.author} | {self.title} | {self.code} | {self.language} | {self.copies}"
 
 
 class Profile(models.Model):

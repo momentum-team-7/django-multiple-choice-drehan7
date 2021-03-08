@@ -34,8 +34,15 @@ a {
   color: white;
 }
 
+.copies {
+  font-size: 20px;
+  color: white;
+}
+
 .snippet-title {
   display: flex;
+  font-size: 20px;
+  color: white;
   justify-content: space-between;
 }
 
