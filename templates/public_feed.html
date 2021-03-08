@@ -16,7 +16,11 @@
         <div class="snippet-format">
             <li><div class="snippet-title">
                     <div class="author-info">
+                        {% for profile in profiles %}
+                        {% if profile.user.pk is user.pk %}
                     <img src="{{ profile.picture.url }}" alt="Profile pic" width="50">
+                        {% endif %}
+                        {% endfor %}
                     <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
                     </div>
                 Title: {{snippet.title}}

@@ -14,7 +14,8 @@ def index(request):
 @login_required
 def feed(request):
     users = User.objects.all()
-    return render(request, 'public_feed.html', {'users': users})
+    profiles = Profile.objects.all() 
+    return render(request, 'public_feed.html', {'users': users, 'profiles': profiles})
 
 @login_required
 def user_profile(request, pk):
