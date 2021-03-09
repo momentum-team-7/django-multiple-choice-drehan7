@@ -40,7 +40,7 @@
                         <img src="{{ profile.picture.url }}" alt="Profile pic" width="40">
                         <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
                     </div>
-                    Title: {{snippet.title}} <span class="copies">COPIES: {{snippet.copies}}</span>
+                    Title: {{snippet.title}} <span class="copies">Copies: {{snippet.copies}}</span>
                 </div>
             <div class="snippet-code-container">
                 <pre><code class="{{snippet.language}}">{{snippet.code}}</code></pre>
