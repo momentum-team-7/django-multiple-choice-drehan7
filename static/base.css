@@ -73,6 +73,20 @@ a {
   font-size: 20px;
 }
 
+.snippet-count {
+  font-size: 20px;
+  color: #f9c74f;
+  text-align: left;
+}
+
+.delete-button,
+.copy-button {
+  background-color: inherit;
+  font-size: 20px;
+  border: none;
+  color: #f9c74f;
+}
+
 /*Login Page Styles*/
 .login-main-container {
   /* border: 2px solid green; */

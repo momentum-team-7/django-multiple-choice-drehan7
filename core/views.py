@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import User, Snippet, Profile
 from .forms import SnippetForm, ProfileForm
 import os
+from functools import reduce
 
 # Create your views here.
 
@@ -21,7 +22,10 @@ def feed(request):
 def user_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     profile = get_object_or_404(Profile, user=user)
-    return render(request, 'user_profile.html', {'user': user, 'profile':profile})
+    count = len(user.snippets.all())
+    totalCopies = reduce((lambda x, y: x + y),[snip.copies for snip in user.snippets.all()])
+
+    return render(request, 'user_profile.html', {'user': user, 'profile':profile, 'count':count, 'copies' : totalCopies})
 
 @login_required
 def add_snippet(request, pk):
@@ -56,11 +60,15 @@ def edit_snippet(request, pk, id):
 
 @login_required
 def delete_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    if request.user.pk != snippet.author.pk:
-        return render(request, 'error.html')
-    snippet.delete()
-    return HttpResponseRedirect(f'/user/{snippet.author.pk}/profile/')
+  
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        snippet = get_object_or_404(Snippet, pk=pk)
+        snippet.delete()
+        data = {'deleted':'True'}
+    else:
+        data = {'deleted': 'False'}
+
+    return JsonResponse(data)
 
 @login_required
 def search_results(request, pk):
@@ -86,18 +94,25 @@ def update_pic(request, pk):
 
 @login_required
 def copy_snippet(request,snippetPK):
-    snippet = Snippet.objects.get(pk=snippetPK)
-
-    new_snippet = Snippet.objects.create(
-        title=snippet.title, 
-        author=request.user, 
-        code=snippet.code, 
-        language=snippet.language, 
-        copies=0
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        snippet = Snippet.objects.get(pk=snippetPK)
+        snippet.copies+=1
+        new_snippet = Snippet.objects.create(
+            title=snippet.title, 
+            author=request.user, 
+            code=snippet.code, 
+            language=snippet.language, 
+            copies=0
         )
+        new_snippet.save()
+        snippet.save()
+        data = {
+            "copied" : "True"
+        }
+    else:
+        data = {
+            'copied': 'False'
+        }
 
-    snippet.copies+=1
-    new_snippet.save()
-    snippet.save()
-            
-    return HttpResponseRedirect(f'/user/{request.user.pk}/profile/')
+    return JsonResponse(data)
+ 

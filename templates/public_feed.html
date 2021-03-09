@@ -29,12 +29,12 @@
             <div class= "edit-delete-buttons">
                 {% if user.pk == request.user.pk %}
                 <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit | </a> 
-                <a href="{% url 'delete_snippet' pk=snippet.pk%}"> Delete</a>
+                <button class='delete-button' id="{{snippet.pk}}">Delete</button>
                 {% endif %}
             </div>
-            <div class="copy-button">
+            <div class="copy-button-container">
                 {% if user.pk != request.user.pk %}
-                <a href="{% url 'copy_snippet' snippetPK=snippet.pk %}"> Copy </a> 
+                <button class="copy-button" id="{{snippet.pk}}">Copy</button>
                 {% endif %}
             </div>
         </div>
