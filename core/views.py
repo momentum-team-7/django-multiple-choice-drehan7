@@ -10,8 +10,6 @@ from functools import reduce
 # Create your views here.
 
 def index(request):
-    # check if user has a profile
-    # if not, then make one
     users = User.objects.all()
     profiles = Profile.objects.all()
 
