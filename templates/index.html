@@ -8,7 +8,7 @@
     <br>
         <div class="login_button_container">
         {% if request.user.is_authenticated %}
-        <div class="already-logged-msg login_button">You are already Logged In dum dum</div>
+        <div class="already-logged-msg ">You are already Logged In</div>
         <a href="/user/feed/" class="login_button">Go to Feed</a>
         {% else %}
         <a href="/accounts/login"class="login_button">Login</a>
