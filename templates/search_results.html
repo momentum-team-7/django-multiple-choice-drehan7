@@ -3,7 +3,18 @@
 
 <h1>Search Results for "{{search_input}}":</h1>
 
-{% for snippet in results %}
+<a href="/user/{{request.user.pk}}/profile/">Back</a>
+<div class="snippets-container">
+    {% if request.user.pk is user.pk %}
+    <div class="snippet-search-container">
+        <form action="{% url 'search_results' pk=request.user.pk %}" method="get">
+            <input name="query" type="text" placeholder="Search Snippets...">
+            <button type="submit">Search</button>
+        </form>
+        
+    </div>
+    {% endif %}
+{% for snippet in final_results %}
 
     <div class="snippet-format">
         <li><div class="snippet-title-container">

@@ -90,8 +90,10 @@ def delete_snippet(request, pk):
 @login_required
 def search_results(request, pk):
     search_input = request.GET['query']
-    results = Snippet.objects.filter(code__icontains=search_input)
-    return render(request, 'search_results.html', {'results':results, 'search_input': search_input})
+    code_results = Snippet.objects.filter(author=request.user, code__icontains=search_input)
+    lang_results = Snippet.objects.filter(author=request.user,language__icontains=search_input)
+    final_results = code_results | lang_results
+    return render(request, 'search_results.html', {'final_results':final_results, 'search_input': search_input})
 
 @login_required
 def update_pic(request, pk):
