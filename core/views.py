@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import User, Snippet, Profile
 from .forms import SnippetForm, ProfileForm
 import os
@@ -56,11 +56,19 @@ def edit_snippet(request, pk, id):
 
 @login_required
 def delete_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    if request.user.pk != snippet.author.pk:
-        return render(request, 'error.html')
-    snippet.delete()
-    return HttpResponseRedirect(f'/user/{snippet.author.pk}/profile/')
+    # snippet = get_object_or_404(Snippet, pk=pk)
+    # if request.user.pk != snippet.author.pk:
+    #     return render(request, 'error.html')
+    # snippet.delete()
+    # return HttpResponseRedirect(f'/user/{snippet.author.pk}/profile/')
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        snippet = get_object_or_404(Snippet, pk=pk)
+        snippet.delete()
+        data = {'deleted':'True'}
+    else:
+        data = {'deleted': 'False'}
+
+    return JsonResponse(data)
 
 @login_required
 def search_results(request, pk):
