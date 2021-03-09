@@ -10,6 +10,7 @@ from functools import reduce
 # Create your views here.
 
 def index(request):
+
     users = User.objects.all()
     profiles = Profile.objects.all()
 
@@ -24,7 +25,7 @@ def feed(request):
     if current_user.username not in [profile.user.username for profile in profiles]:
         new_profile = Profile.objects.create(
             user=current_user,
-            picture = 'media/media/default_icon_a2OAY11.jpg',
+            
         )
         new_profile.save()
 
