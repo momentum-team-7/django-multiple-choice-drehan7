@@ -147,6 +147,7 @@ INTERNAL_IPS = [
 
 
 ACCOUNT_ACTIVATION_DAYS = 7
+
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = 'feed'
 LOGOUT_REDIRECT_URL = 'index'
