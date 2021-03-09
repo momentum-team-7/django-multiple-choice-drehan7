@@ -35,11 +35,11 @@ for(let button of copyButtons) {
       console.log(data)
       if(data['copied'] === 'True') {
         snippetContainer.style.opacity = .6;
-        e.target.textContent = "COPIED!"
+        e.target.textContent = "Copied to clipboard & profile!"
         setTimeout(() => {
           snippetContainer.style.opacity = 1;
           e.target.textContent = "Copy";
-        }, 1500)
+        }, 2000)
 
       }
       
