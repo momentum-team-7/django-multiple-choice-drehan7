@@ -10,13 +10,26 @@ from functools import reduce
 # Create your views here.
 
 def index(request):
+    # check if user has a profile
+    # if not, then make one
     users = User.objects.all()
+    profiles = Profile.objects.all()
+
     return render(request, 'index.html', {'users': users})
 
 @login_required
 def feed(request):
     users = User.objects.all()
     profiles = Profile.objects.all() 
+
+    current_user = User.objects.get(username = request.user.username)
+    if current_user.username not in [profile.user.username for profile in profiles]:
+        new_profile = Profile.objects.create(
+            user=current_user,
+            picture = 'media/media/default_icon_a2OAY11.jpg',
+        )
+        new_profile.save()
+
     return render(request, 'public_feed.html', {'users': users, 'profiles': profiles})
 
 @login_required
@@ -24,7 +37,11 @@ def user_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     profile = get_object_or_404(Profile, user=user)
     count = len(user.snippets.all())
-    totalCopies = reduce((lambda x, y: x + y),[snip.copies for snip in user.snippets.all()])
+    if count > 0:
+        totalCopies = reduce((lambda x, y: x + y),[snip.copies for snip in user.snippets.all()])
+
+    else:
+        totalCopies = 0
 
     return render(request, 'user_profile.html', {'user': user, 'profile':profile, 'count':count, 'copies' : totalCopies})
 
