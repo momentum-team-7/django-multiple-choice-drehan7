@@ -32,9 +32,9 @@
                 <button class='delete-button' id="{{snippet.pk}}">Delete</button>
                 {% endif %}
             </div>
-            <div class="copy-button">
+            <div class="copy-button-container">
                 {% if user.pk != request.user.pk %}
-                <a href="{% url 'copy_snippet' snippetPK=snippet.pk %}"> Copy </a> 
+                <button class="copy-button" id="{{snippet.pk}}">Copy</button>
                 {% endif %}
             </div>
         </div>
