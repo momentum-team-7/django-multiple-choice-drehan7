@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from .models import User, Snippet, Profile
 from .forms import SnippetForm, ProfileForm
 import os
+import pyperclip
 from functools import reduce
 
 # Create your views here.
@@ -106,6 +107,7 @@ def copy_snippet(request,snippetPK):
         )
         new_snippet.save()
         snippet.save()
+        pyperclip.copy(snippet.code)
         data = {
             "copied" : "True"
         }
