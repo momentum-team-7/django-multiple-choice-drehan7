@@ -17,7 +17,7 @@ class Snippet(models.Model):
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
-    picture = models.ImageField(upload_to='media', default="media/iconfinder_moon_dark_mode_night_5402400.png")
+    picture = models.ImageField(upload_to='media', default="media/default_icon.jpg")
 
     def __str__(self):
         return f"{self.user}"

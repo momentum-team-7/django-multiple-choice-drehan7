@@ -2,7 +2,8 @@
 const deleteButtons = document.querySelectorAll('.delete-button')
 for (let button of deleteButtons) {
   button.addEventListener("click", e => {
-    const snippetContainer = e.target.parentElement.parentElement;
+    const snippetContainer = e.target.parentElement.parentElement.parentElement;
+    const snippetCountLabel = document.querySelector("#snippet-count-label");
     const deleteUrl = `/user/snippets/${e.target.id}/delete`;
     fetch (deleteUrl, {
       headers: {
@@ -15,6 +16,12 @@ for (let button of deleteButtons) {
     .then(data => {
       console.log(data);
       snippetContainer.remove();
+      var current_count = parseInt(snippetCountLabel.textContent);
+      const new_count = current_count -1;
+      snippetCountLabel.textContent = new_count;
+
+      
+
     })
   })
 }

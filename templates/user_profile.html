@@ -28,7 +28,10 @@
     {% endif %}
     <div class="snippet-add-count">
         <div class="snippet-count">
-            Snippets: {{count}}
+            Snippets:
+            <span id="snippet-count-label">
+             {{count}}
+            </span>
             Total Copies: {{copies}}
         </div>
         {% if user.pk == request.user.pk %}
