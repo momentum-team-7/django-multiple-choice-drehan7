@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Currently logged in as: {{ request.user }}</h2>
 
 {% if request.user.pk == user.pk %}
-<form action="{% url 'add_snippet' pk=request.user.pk%}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+<div class="add-edit-main-container">
+    <h1 class="login-title" id="login-title">Add Snippet</h1>
+    <form action="{% url 'add_snippet' pk=request.user.pk%}" method="post">
+        {% csrf_token %}
+        <div class="login-form-labels">
+            {{ form.as_p }}
+        </div>
+        <div class="login-submit-button-container">
+            <input class="login-submit-button" type="submit" value="Save">
+        </div>
+    </form>
+</div>
+
 {% endif %}
 {% endblock content %}
+
+
+

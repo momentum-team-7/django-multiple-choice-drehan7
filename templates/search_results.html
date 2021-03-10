@@ -17,19 +17,28 @@
 {% for snippet in final_results %}
 
     <div class="snippet-format">
-        <li><div class="snippet-title-container">
-            Title: {{snippet.title}}
-        </div>
-        <div class="snippet-title">
-            <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author}}</a>
-        </div>
+        <li>
+            <div class="snippet-title">
+                <div class="author-info">
+                    <img src="{{ profile.picture.url }}" alt="Profile pic" width="40">
+                    <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author| upper}}</a>
+                </div>
+                Title: {{snippet.title| title}} <span class="copies">Copies: {{snippet.copies| title}}</span>
+            </div>
         <div class="snippet-code-container">
-        <pre><code>{{snippet.code}}</code></pre> 
-        </div> 
-        <div class="bottom-snippet-container"> Language: {{ snippet.language }}
-        <div class= "edit-delete-buttons">
-        <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit </a><a href="{% url 'delete_snippet' pk=snippet.pk%}"> Delete</a>
+            <pre><code class="{{snippet.language}}">{{snippet.code}}</code></pre>
         </div>
+        <pre><code class="plaintext"> Language: {{snippet.language| title}} </code></pre>
+        <div class= "edit-delete-buttons">
+            {% if user.pk == request.user.pk %}
+            <a href="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}"> Edit | </a> 
+            <button class="delete-button" id="{{snippet.pk}}">Delete</button>
+            {% endif %}
+        </div>
+        <div class="copy-button-container">
+            {% if user.pk != request.user.pk %}
+            <button class="copy-button" id="{{snippet.pk}}">Copy</button>
+            {% endif %}
         </div>
         </li>
     </div>
