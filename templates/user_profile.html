@@ -32,7 +32,7 @@
             <span id="snippet-count-label">
              {{count}}
             </span>
-            Total Copies: {{copies}}
+            Total Copies: <span id="total-copies-label">{{copies}}</span>
         </div>
         {% if user.pk == request.user.pk %}
         <div class="add-snippet-button">
@@ -50,7 +50,7 @@
                         <img src="{{ profile.picture.url }}" alt="Profile pic" width="40">
                         <a href="{% url 'user_profile' pk=snippet.author.pk %}">{{snippet.author| upper}}</a>
                     </div>
-                    Title: {{snippet.title| title}} <span class="copies">Copies: {{snippet.copies| title}}</span>
+                    Title: {{snippet.title| title}} <span class="copies">Copies: <span id="copies-label">{{snippet.copies}}</span></span>
                 </div>
             <div class="snippet-code-container">
                 <pre><code class="{{snippet.language}}">{{snippet.code}}</code></pre>
