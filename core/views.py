@@ -77,7 +77,7 @@ def edit_snippet(request, pk, id):
 
 @login_required
 def delete_snippet(request, pk):
-  
+
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         snippet = get_object_or_404(Snippet, pk=pk)
         snippet.delete()
