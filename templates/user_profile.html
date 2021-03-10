@@ -7,10 +7,10 @@
     <img src="{{ profile.picture.url }}" alt="Profile pic" width="200">
     <br>
     {% if request.user.pk is user.pk %}
-    <!-- <div class="update-picture"> -->
+    
         <a href="{% url 'update_pic' pk=request.user.pk %}">Edit Picture</a>
             
-    <!-- </div> -->
+    
     {% endif %}
 </div>
 <div class="snippets-container">
@@ -27,15 +27,15 @@
     </div>
     {% endif %}
     <div class="snippet-add-count">
+        <div class="snippet-count">
+            Snippets: {{count}}
+            Total Copies: {{copies}}
+        </div>
         {% if user.pk == request.user.pk %}
         <div class="add-snippet-button">
             <a href="{% url 'add_snippet' pk=request.user.pk%}">Add Snippet</a>
         </div>
         {% endif %}
-        <div class="snippet-count">
-            Snippets: {{count}}
-            Total Copies: {{copies}}
-        </div>
     </div>
 
     
