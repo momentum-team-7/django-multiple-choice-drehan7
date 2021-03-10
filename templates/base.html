@@ -17,8 +17,8 @@
     {% if request.user.pk != none %}
     <header class="header">
         <a href="/user/feed">Home Page | </a>
-        <a href="{% url 'user_profile' pk=request.user.pk %}">{{request.user}}'s Profile | </a>
-        <a href="/accounts/logout">Logout</a>
+        <a href="{% url 'user_profile' pk=request.user.pk %}"> {{request.user| title}}'s Profile | </a>
+        <a href="/accounts/logout"> Logout</a>
     </header>
     {% endif %}
     {% block content %}

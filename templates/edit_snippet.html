@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
-
-
+<div class="add-edit-main-container">
+    <h1 class="login-title" id="login-title">Edit Snippet</h1>
+    <form action="{% url 'edit_snippet' pk=snippet.author.pk id=snippet.pk %}" method="post">
+        {% csrf_token %}
+        <div class="login-form-labels">
+            {{ form.as_p }}
+        </div>
+        <div class="login-submit-button-container">
+            <input class="login-submit-button" type="submit" value="Save">
+        </div>
+    </form>
+</div>
 {% endblock %}
