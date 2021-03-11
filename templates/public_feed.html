@@ -4,6 +4,13 @@
 
 <h1>Public Feed</h1>
 
+<div class="snippet-search-container">
+    <form action="{% url 'search_results' pk=request.user.pk %}" method="get">
+        <input name="query" type="text" placeholder="Search Your Snippets...">
+        <button type="submit">Search</button>
+    </form>
+    
+</div>
 
 <div class="public-snippets-container">
     <ul>
